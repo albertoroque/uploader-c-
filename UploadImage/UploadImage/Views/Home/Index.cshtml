@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+
+    AjaxOptions ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "Post",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "foto-partial-img",       
+    };
+}
+
+<div class="mdl-layout mdl-js-layout">
+    <div class="mdl-layout__content">
+        <center>
+            @using (Ajax.BeginForm("FileUpload", "Home", ajaxOptions, new { enctype = "multipart/form-data" }))
+            {
+                <div class="upload"> 
+                    <br />                                       
+                    
+                    <div id="ativa" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                        SELECIONAR FOTO
+                    </div>                                       
+                    
+                    <input id="esconde" type="file" name="file" />
+                    <br />                    
+
+                    <button id="envia" style="display:none;"></button>                   
+                </div>
+            }
+            <div id="foto-partial-img">                                       
+                   @Html.Partial("~/Views/Home/FotoParcial.cshtml")              
+            </div>
+
+            @ViewBag.Msg
+        </center>
+    </div>
+</div>
+<style>
+    div.upload {
+    width: 400px;      
+    color:white;
+    z-index:-4;
+}  
+    #ativa {         
+        z-index:1 !important;
+        width:80%;
+        cursor:pointer;
+    } 
+    #esconde { 
+        z-index: 2; 
+        font-size: 20px; /* Aumenta tamanho do campo */ 
+        opacity: 0; 
+        filter: alpha(opacity=0);
+        cursor:pointer;
+        position:absolute; 
+        top:-30px;
+        position:relative;
+    }
+
+</style>
+<script>
+    $("#esconde").change(function ()
+    {
+        $("#path").html($(this).val());
+        $("#envia").trigger('click');
+    });
+</script>

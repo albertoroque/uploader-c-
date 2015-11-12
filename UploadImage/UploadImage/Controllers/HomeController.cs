@@ -10,7 +10,7 @@ namespace UploadImage.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index(string cam, string msg)
-        {
+        {   
             if (cam == null)
             {
                 ViewBag.Image = "http://www.datastax.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
@@ -53,7 +53,7 @@ namespace UploadImage.Controllers
                 
                 file.SaveAs(path);                            
             }
-
+            
             return RedirectToAction("Index", "Home", new { cam = cam, msg = "Sucesso!" });
         }
             

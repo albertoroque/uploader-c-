@@ -29,7 +29,8 @@
                 </div>
             }
             <div id="foto-partial-img">                                       
-                   @Html.Partial("~/Views/Home/FotoParcial.cshtml")              
+                   @Html.Partial("~/Views/Home/FotoParcial.cshtml")
+                   <div id="upload-foto-load" class="mdl-spinner mdl-js-spinner is-active"></div>              
             </div>
 
             @ViewBag.Msg
@@ -56,6 +57,20 @@
         position:absolute; 
         top:-30px;
         position:relative;
+    }
+
+    #upload-foto{
+        z-index:99;
+        position:relative;
+    }
+
+    #upload-foto-load{
+        position:absolute;
+        margin:0 auto;
+        left:0;
+        right:0;
+        margin-top:50px;
+        z-index:2;
     }
 
 </style>
